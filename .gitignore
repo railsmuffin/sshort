@@ -1,0 +1,5 @@
+/Gemfile.lock
+/.idea
+/.ruby-version
+/.ruby-gemset
+/*.gem
