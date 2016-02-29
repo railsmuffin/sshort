@@ -16,7 +16,8 @@ task :ssh do
   end
 
   puts "Connecting to #{current_server.hostname}..."
-  ssh_command = "ssh -p #{current_server.port || 22} #{current_server.user}@#{current_server.hostname}"
-  cd_command = "cd #{fetch(:deploy_to)}/#{fetch(:current_dir)} && bash"
+  port = current_server.port || fetch(:ssh_options, {})[:port] || 22
+  ssh_command = "ssh -p #{port} #{current_server.user}@#{current_server.hostname}"
+  cd_command = "cd #{fetch(:deploy_to)} && bash"
   system "#{ssh_command} -t \"#{cd_command}\""
 end
